@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day!</title>
+    <style>
+        html, body { /* Make html and body take up full viewport */
+            height: 100%;
+            margin: 0; /* Remove default margins */
+        }
+
+        body {
+            font-family: sans-serif;
+            background-color: #f8e0ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card-container {
+            width: 80vw; /* Use viewport width for responsiveness */
+            height: 80vh; /* Use viewport height for responsiveness */
+            max-width: 600px; /* Set a maximum width */
+            max-height: 800px; /* Set a maximum height */
+            perspective: 1000px;
+            position: relative;
+        }
+
+        .card-page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            backface-visibility: hidden;
+            transition: transform 0.8s ease-in-out;
+            transform-origin: left;
+        }
+
+        .card-page img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+		.card-page p {
+			position: absolute;
+			padding: 20px;
+			text-align: center;
+			font-family: 'Dancing Script', cursive; /* Use a romantic font */
+			font-size: 1.5em; /* Increase font size */
+		}
+
+        /* Initially hide all pages except the first */
+        .card-page:not(:first-child) {
+            transform: rotateY(180deg); /* Start other pages "flipped" */
+        }
+    </style>
+</head>
+<body>
+
+<div class="card-container">
+    <div class="card-page">
+        <img src="image1.jpg" alt="Valentine's Image 1">
+        <p style="bottom: 10%;right: 12%;">Grace</p>
+        <p style="bottom: 7.5%;right: 7%;font-size:1em">(Soon to be mom)</p>
+        <p style="bottom: 0%;right: 8%;">Nevin</p>
+    </div>
+    <div class="card-page">
+        <img src="image2.webp" alt="Valentine's Image 2">
+        <p style="bottom: -2%;left: 50%;transform: translate(-50%, 0%);">I love you more than all of our tens of animals combine!</p>
+        <p style="bottom: 0%;right: 8%;font-size:0.7em">most of the time...</p>
+    </div>
+    <div class="card-page">
+        <img src="image3.webp" alt="Valentine's Image 3">
+        <p style="top: 0%;left: 10%;right: 10%;">I've though a long time about what to get you for a give, but we already have so much!</p>
+        <p style="bottom: 0%;left: 10%;right: 10%;padding:0px;">There are a lot of things that you would like, but we keep saying we don't want wasted gifts...</p>
+    </div>
+    <div class="card-page">
+        <img src="image4.webp" alt="Valentine's Image 4">
+        <p style="top: 48%;left: 5%;right: 5%;">So how about this...</p>
+        <p style="top: 54%;left: 5%;right: 5%;">Pick a day! Any day! You have won an all expense paid fun day with the one you love most (Nevin, not Luma, or cake, or Jiji...)!<br/>Shopping?! Heck yeah!<br/>Food!? As much as we can stomach!<br/>Activities?! No way!</p>
+        <p style="bottom: 0%;left: 5%;right: 5%;padding:0px">What were you thinking with that last one? We are too out of shape!</p>
+    </div>
+</div>
+
+<script>
+    const cardContainer = document.querySelector('.card-container');
+    const cardPages = document.querySelectorAll('.card-page');
+    let currentPage = 0;
+
+    cardContainer.addEventListener('click', () => {
+        // Hide current page by rotating it away
+        cardPages[currentPage].style.transform = 'rotateY(-180deg)';
+
+        currentPage = (currentPage + 1) % cardPages.length; // Cycle through pages
+
+        // Show the next page by rotating it into view
+        cardPages[currentPage].style.transform = 'rotateY(0deg)';
+    });
+</script>
+
+</body>
+</html>
